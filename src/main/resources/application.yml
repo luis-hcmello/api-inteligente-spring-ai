@@ -1,0 +1,46 @@
+server:
+  port: ${PORT:8080}
+
+spring:
+  application:
+    name: api-inteligente-spring-ai
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:orcamento_db}
+    username: ${DB_USER:orcamento}
+    password: ${DB_PASSWORD:orcamento123}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+  servlet:
+    multipart:
+      max-file-size: 25MB
+      max-request-size: 25MB
+
+  ai:
+    openai:
+      # A chave fica fora do código, em uma variável de ambiente.
+      api-key: ${OPENAI_API_KEY:missing-key}
+      chat:
+        model: ${OPENAI_CHAT_MODEL:gpt-5-mini}
+      audio:
+        transcription:
+          model: ${OPENAI_TRANSCRIPTION_MODEL:whisper-1}
+        speech:
+          model: ${OPENAI_TTS_MODEL:gpt-4o-mini-tts}
+          voice: ${OPENAI_TTS_VOICE:nova}
+          response-format: mp3
+
+logging:
+  level:
+    br.com.estudos.apiinteligente: INFO
+    org.springframework.ai: INFO
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info

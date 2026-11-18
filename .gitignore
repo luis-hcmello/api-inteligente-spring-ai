@@ -1,0 +1,14 @@
+target/
+.idea/
+.vscode/
+*.iml
+.env
+.DS_Store
+*.log
+
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# Pasta duplicada de configuracao da IDE
+/Projeto api inteligente/

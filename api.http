@@ -1,0 +1,59 @@
+### Health check
+GET http://localhost:8080/actuator/health
+
+### Criar receita
+POST http://localhost:8080/api/v1/transactions
+Content-Type: application/json
+
+{
+  "descricao": "Salário",
+  "valor": 3500.00,
+  "tipo": "RECEITA",
+  "categoria": "Salário",
+  "data": "2026-11-05"
+}
+
+### Criar despesa
+POST http://localhost:8080/api/v1/transactions
+Content-Type: application/json
+
+{
+  "descricao": "Mercado",
+  "valor": 245.70,
+  "tipo": "DESPESA",
+  "categoria": "Alimentação",
+  "data": "2026-11-08"
+}
+
+### Listar transações
+GET http://localhost:8080/api/v1/transactions
+
+### Resumo mensal
+GET http://localhost:8080/api/v1/transactions/summary?month=2026-11
+
+### Conversar com o assistente
+POST http://localhost:8080/api/v1/assistant/chat
+Content-Type: application/json
+
+{
+  "message": "Qual é meu saldo de novembro de 2026? Consulte os dados registrados."
+}
+
+### Pedir para registrar uma despesa via Tool Calling
+POST http://localhost:8080/api/v1/assistant/chat
+Content-Type: application/json
+
+{
+  "message": "Registre uma despesa de 32,50 reais, descrição café, categoria Alimentação, hoje."
+}
+
+### Sintetizar texto em áudio MP3
+POST http://localhost:8080/api/v1/audio/speech
+Content-Type: application/json
+
+{
+  "text": "Seu resumo financeiro está pronto."
+}
+
+### Excluir transação (troque 1 pelo ID real)
+DELETE http://localhost:8080/api/v1/transactions/1
